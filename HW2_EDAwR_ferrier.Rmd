@@ -121,10 +121,14 @@ income for the entire US.
 Write a short paragraph describing the distribution of median incomes.
 
 ```{r problem2}
-ggplot(county_df, aes(Income)) + geom_density() + geom_histogram(color = 'red')
+ggplot(county_df, aes(Income)) + geom_histogram()
+ggplot(county_df, aes(x = Region, y = Income)) + geom_boxplot() 
+ggplot(county_df, aes(Income)) + geom_density() 
+ggplot(county_df, aes(x = Region, y = Income)) + geom_violin()
+
 ```
 
-###This data is asymmetrical with a mode appearing around 40,000.  Since the right tail is much longer than the left tail, this data would be considered right-skewed.
+###The histogram shows us that the median income across the country is right-skewed with a mode around 40,000. The box plot shows us that all regions are right around the 35,000-60,000 range but that the Northeast is clearly higher than the South, with the Midwest and West hanging out in the middle of the other two regions.  The kernal density plot shows us pretty much the same info as teh histogram, with the data being right-skewed with a mode around 40,000.  The violin plot shows us similar data to the boxplot, but with a little better visualization of the frequencies at each level.
 
 
 ### Problem 3 - Histogram of total population
@@ -132,7 +136,7 @@ ggplot(county_df, aes(Income)) + geom_density() + geom_histogram(color = 'red')
 Create a histogram of total population for counties in the US.
 
 ```{r histo_totpop}
-
+ggplot(county_df, aes(TotalPop)) + geom_histogram()
 ```
 
 Repeat the histogram about but make the following style changes to the plot.
@@ -143,11 +147,15 @@ Repeat the histogram about but make the following style changes to the plot.
 * Change the colors of the bars to something other than the default black
 
 ```{r histo_stylechanges}
-
+ggplot(county_df, aes(TotalPop)) + geom_histogram(fill = 'blue', binwidth=100000) + ggtitle('Distribution of population for US counties') + xlab('Total Population') + ylab('Number of Counties') 
 ```
 
 **Hacker Extra** - Also create a kernel density plot overlaid on a histogram of
 Income. 
+
+```{r problem3 hackerextra}
+ggplot(county_df, aes(TotalPop)) + geom_histogram(fill = 'blue', binwidth=100000) + ggtitle('Distribution of population for US counties') + xlab('Total Population') + ylab('Number of Counties') + geom_density(aes(y=100000 * ..count..))
+```
 
 Repeat the histogram but only for counties with less than 2.5 million people.
 
