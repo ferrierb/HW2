@@ -43,7 +43,7 @@ for this homework assignment in your GitHub account. Periodically push your comm
 to GitHub. When done with the assignment, paste in the URL of your GitHub project
 so that I can go look at it.
 
-GitHub URL: https://github.com/ferrierb/HW2
+__GitHub URL: https://github.com/ferrierb/HW2__
 
 ## Step 3 - Set working directory and explore data folder
 
@@ -104,7 +104,7 @@ str(county_MI)
 summary(county_df)
 summary(county_MI)
 ```
-###The county_df data frame has some NA's in the data, but the County_MI dataframe does not appear to have any NA's.  The structures appear to be pretty similar with the exception of some columns being shifted around.  The only major difference in structures is that the county_MI database has an added "Peninsula" column that is not present in the county_df database.
+__The county_df data frame has some NA's in the data, but the County_MI dataframe does not appear to have any NA's.  The structures appear to be pretty similar with the exception of some columns being shifted around.  The only major difference in structures is that the county_MI database has an added "Peninsula" column that is not present in the county_df database.__
 
 The county_MI data frame contains data for Michigan only and includes an
 peninsula field. See **census_data_prep.R** to see how this field was
@@ -128,7 +128,7 @@ ggplot(county_df, aes(x = Region, y = Income)) + geom_violin()
 
 ```
 
-###The histogram shows us that the median income across the country is right-skewed with a mode around 40,000. The box plot shows us that all regions are right around the 35,000-60,000 range but that the Northeast is clearly higher than the South, with the Midwest and West hanging out in the middle of the other two regions.  The kernal density plot shows us pretty much the same info as teh histogram, with the data being right-skewed with a mode around 40,000.  The violin plot shows us similar data to the boxplot, but with a little better visualization of the frequencies at each level.
+__The histogram shows us that the median income across the country is right-skewed with a mode around 40,000. The box plot shows us that all regions are right around the 35,000-60,000 range but that the Northeast is clearly higher than the South, with the Midwest and West hanging out in the middle of the other two regions.  The kernal density plot shows us pretty much the same info as teh histogram, with the data being right-skewed with a mode around 40,000.  The violin plot shows us similar data to the boxplot, but with a little better visualization of the frequencies at each level.__
 
 
 ### Problem 3 - Histogram of total population
@@ -176,7 +176,7 @@ differ with respect to distribution of median income over the counties?
 ```{r bp_inc_by_peninsula}
 ggplot(data = county_MI, aes(x = peninsula, y = Income)) + geom_boxplot() + ggtitle('Median Income in Michigan by Peninsula')
 ```
-###It is pretty clear that the median income of counties in the Lower Peninsula is higher than the median income of counties in the Upper peninsula.
+__It is pretty clear that the median income of counties in the Lower Peninsula is higher than the median income of counties in the Upper peninsula.__
 
 Create several more boxplots showing how the peninsulas compare with respect to
 some of the other variables. Summarize your findings in a few short paragraphs.
@@ -187,7 +187,7 @@ ggplot(data = county_MI, aes(x = peninsula, y = Poverty)) + geom_boxplot() + ggt
 ggplot(data = county_MI, aes(x = peninsula, y = Unemployment)) + geom_boxplot() + ggtitle('Unemployment percentage by Peninsula')
 ```
 
-###When looking at percentage of people that use public transit, poverty rate, and unemployment rate, the UP and LP are pretty similar.  The only major difference is that the poverty rate in the UP is very left skewed, while the LP is slightly right-skewed.  Another difference is that there is a wider range of unemployment rates in the UP compared to the LP.
+__When looking at percentage of people that use public transit, poverty rate, and unemployment rate, the UP and LP are pretty similar.  The only major difference is that the poverty rate in the UP is very left skewed, while the LP is slightly right-skewed.  Another difference is that there is a wider range of unemployment rates in the UP compared to the LP.__
 
 ### Problem 5 - How do regions of the country compare?
 
@@ -200,7 +200,7 @@ labels.
 ```{r faceted_histo}
 ggplot(county_df, aes(Poverty)) + geom_histogram() + facet_grid(. ~ Region) + ggtitle('Poverty rates of counties by region') + ylab('number of counties')
 ```
-###The Midwest, Northeast, and West all look to have the majority of their poverty rates under 20% while the South looks like the mode of poverty rate is right around 20%.
+__The Midwest, Northeast, and West all look to have the majority of their poverty rates under 20% while the South looks like the mode of poverty rate is right around 20%.__
 
 ### Problem 6 - Basic bar chart
 
@@ -208,7 +208,7 @@ Create a bar chart showing the number of counties by Region in the US. Make sure
 your graph has a title and good axis labels.
 
 ```{r bar_counties_by_region}
-
+ggplot(county_df, aes(Region))  + geom_bar() + ggtitle('number of counties per region') + ylab('number of counties')
 ```
 
 ### Problem 7 - Basic scatter plots
@@ -217,33 +217,39 @@ Create a scatter plot using the Michigan only data frame comparing
 Income and MeanCommute.
 
 ```{r xy_inc_commute}
-
+ggplot(data=county_MI, aes(x = Income, y = MeanCommute)) + geom_point() + ggtitle('Mean commute vs income')
 ```
 
 Create a modified version of the above scatter plot in which the point color
 is mapped to peninsula.
 
 ```{r xy_inc_commute_peninsula}
-
+ggplot(data=county_MI, aes(x = Income, y = MeanCommute, color=peninsula)) + geom_point() + ggtitle('Mean commute vs income by peninsula') 
 ```
 
 Your thoughts on the relationship between these variables?
+
+__The mean commute does seem to have a relationship with the median income of a county although, if a few of these pionts were removed as "outliers" there may appear to be no relatiopnship.  With the color differences of the points by peninsula, we can see that Mean Commute and Income both appear to be lower in the UP than they are in the LP.__
 
 Now, create a few more scatter plots using variables of your choosing in which
 you facet by peninsula as well. How do the relationships compare across the
 peninsulas?
 
 ```{r xy_faceted_peninsula}
-
+ggplot(data=county_MI, aes(x = PublicWork, y = Poverty, color=peninsula)) + geom_point() + ggtitle('public work vs poverty by peninsula') 
+ggplot(data=county_MI, aes(x = MeanCommute, y = Poverty, color=peninsula)) + geom_point() + ggtitle('mean comute vs poverty by peninsula') 
+ggplot(data=county_MI, aes(x = Unemployment, y = Poverty, color=peninsula)) + geom_point() + ggtitle('unemployment vs poverty by peninsula') 
 ```
 
+__Graph 1 shows us that, while there appears to be more public work done in the UP, there doesn't appears to be any relation between poverty and percentage of people that work in the public sector.  Graph 2 again shows us that the mean commute appears shorter in the UP than in the LP, but there doesn't appear to be any correlation between povery and mean commute time.  Graph 3 shows us that, when enemployment increases, so does the poverty rate in that county.  There doesn't seem to be much different between peninsulas.__
 
 Now use the full US data frame.
 
 Create a scatter plot of TotalPop by Income.
 
 ```{r xy_pop_inc}
-
+ggplot(data=county_df, aes(x = Income, y = TotalPop)) + geom_point() + ggtitle('Total population by income') 
+ggplot(data=county_df, aes(x = Income, y = TotalPop)) + geom_point() + ggtitle('Total population by income (log scale)')  + scale_y_log10()
 ```
 
 The widely varying values make this difficult to interpret in terms of looking
@@ -252,9 +258,17 @@ the plotted data itself to use a base 10 logarithmic scale (or transform).
 Write a short paragraph on why one might want to use a log scale or log
 transform of data when plotting.
 
+__Using a log scale can make it easier to compare the data between two variables, especially if there isn't much difference in large changes of the variable.  For this data, there are changes in totalpopulation as income increases, but it's at a much smaller scale relative to the variable size, so putting Totalpop on a log scale allows us to see that correlation better.__
+
 ### Hacker Extra - More analysis
 
 Do some additional plotting to look for interesting patterns or relationships
 either in the full US dataset or the MI only dataset. In addition, try out
 some of ggplots additional features such as themes, axis formatting, gridline
 control, or others.
+
+```{r hackerextra}
+ggplot(data=county_df, aes(x = TotalPop, y = Poverty)) + geom_point()  + scale_x_continuous(limits=c(0,2500000)) + theme_minimal() + ggtitle('poverty vs total population ') 
+ggplot(data=county_df, aes(x = TotalPop, y = Unemployment)) + geom_point()  + scale_x_continuous(limits=c(0,2500000)) + theme_bw() + ggtitle('unemployment vs total population ')
+ggplot(data=county_df, aes(y = TotalPop, x = MeanCommute)) + geom_violin()  + theme_classic() + facet_grid(. ~ Region) + scale_y_continuous(limits=c(0,250000)) + ggtitle('Mean commute time vs population by region')
+```
