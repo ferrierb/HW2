@@ -43,7 +43,7 @@ for this homework assignment in your GitHub account. Periodically push your comm
 to GitHub. When done with the assignment, paste in the URL of your GitHub project
 so that I can go look at it.
 
-__GitHub URL: https://github.com/ferrierb/HW2__
+__ GitHub URL: https://github.com/ferrierb/HW2 __
 
 ## Step 3 - Set working directory and explore data folder
 
