@@ -160,7 +160,7 @@ ggplot(county_df, aes(TotalPop)) + geom_histogram(fill = 'blue', binwidth=100000
 Repeat the histogram but only for counties with less than 2.5 million people.
 
 ```{r histo_lt2.5m}
-
+ggplot(county_df, aes(TotalPop)) + geom_histogram(data=subset(county_df,TotalPop < 2500000),  fill = 'blue', binwidth=100000) + ggtitle('Distribution of population for US counties') + xlab('Total Population') + ylab('Number of Counties') 
 ```
 
 
@@ -174,8 +174,9 @@ differ with respect to distribution of median income over the counties?
 
 
 ```{r bp_inc_by_peninsula}
-
+ggplot(data = county_MI, aes(x = peninsula, y = Income)) + geom_boxplot() + ggtitle('Median Income in Michigan by Peninsula')
 ```
+###It is pretty clear that the median income of counties in the Lower Peninsula is higher than the median income of counties in the Upper peninsula.
 
 Create several more boxplots showing how the peninsulas compare with respect to
 some of the other variables. Summarize your findings in a few short paragraphs.
