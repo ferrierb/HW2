@@ -104,7 +104,7 @@ str(county_MI)
 summary(county_df)
 summary(county_MI)
 ```
-###The county_df data frame has some NA's in the data, but the County_MI dataframe does not appear to have any NA's.  The structures appear to be pretty similar with the exception of some columns being shifted around.  The only major difference in structures is that the county_MI database has an added "Peninsula" column that is not present in the country_Df database.
+###The county_df data frame has some NA's in the data, but the County_MI dataframe does not appear to have any NA's.  The structures appear to be pretty similar with the exception of some columns being shifted around.  The only major difference in structures is that the county_MI database has an added "Peninsula" column that is not present in the county_df database.
 
 The county_MI data frame contains data for Michigan only and includes an
 peninsula field. See **census_data_prep.R** to see how this field was
@@ -120,9 +120,12 @@ income for the entire US.
 
 Write a short paragraph describing the distribution of median incomes.
 
-```{r}
-# ggplot(???) + geom_histogram(???)
+```{r problem2}
+ggplot(county_df, aes(Income)) + geom_density() + geom_histogram(color = 'red')
 ```
+
+###This data is asymmetrical with a mode appearing around 40,000.  Since the right tail is much longer than the left tail, this data would be considered right-skewed.
+
 
 ### Problem 3 - Histogram of total population
 
