@@ -182,8 +182,12 @@ Create several more boxplots showing how the peninsulas compare with respect to
 some of the other variables. Summarize your findings in a few short paragraphs.
 
 ```{r more_boxplots}
-
+ggplot(data = county_MI, aes(x = peninsula, y = Transit)) + geom_boxplot() + ggtitle('Public Transit percentage by Peninsula')
+ggplot(data = county_MI, aes(x = peninsula, y = Poverty)) + geom_boxplot() + ggtitle('Poverty Percentage by Peninsula')
+ggplot(data = county_MI, aes(x = peninsula, y = Unemployment)) + geom_boxplot() + ggtitle('Unemployment percentage by Peninsula')
 ```
+
+###When looking at percentage of people that use public transit, poverty rate, and unemployment rate, the UP and LP are pretty similar.  The only major difference is that the poverty rate in the UP is very left skewed, while the LP is slightly right-skewed.  Another difference is that there is a wider range of unemployment rates in the UP compared to the LP.
 
 ### Problem 5 - How do regions of the country compare?
 
@@ -194,8 +198,9 @@ distribution of MeanCommute time. Make sure your graph has a title and good axis
 labels.
 
 ```{r faceted_histo}
-
+ggplot(county_df, aes(Poverty)) + geom_histogram() + facet_grid(. ~ Region) + ggtitle('Poverty rates of counties by region') + ylab('number of counties')
 ```
+###The Midwest, Northeast, and West all look to have the majority of their poverty rates under 20% while the South looks like the mode of poverty rate is right around 20%.
 
 ### Problem 6 - Basic bar chart
 
