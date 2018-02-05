@@ -90,8 +90,8 @@ You should read the **county.csv** file into a data frame named county_df and
 **county_MI.csv** into a data frame named county_MI.
 
 ```{r read_countydata}
-# county_df <- ???
-# county_MI <- ???
+county_df <- read.csv(file='data/county.csv')
+county_MI <- read.csv(file='data/county_MI.csv')
 ```
 
 Check the structure of each data.frame and use the `summary` function to begin
@@ -99,8 +99,12 @@ exploring the data. Are there any NA values? What
 differences do you notice between the structure of the two data frames.
 
 ```{r}
-
+str(county_df)
+str(county_MI)
+summary(county_df)
+summary(county_MI)
 ```
+###The county_df data frame has some NA's in the data, but the County_MI dataframe does not appear to have any NA's.  The structures appear to be pretty similar with the exception of some columns being shifted around.  The only major difference in structures is that the county_MI database has an added "Peninsula" column that is not present in the country_Df database.
 
 The county_MI data frame contains data for Michigan only and includes an
 peninsula field. See **census_data_prep.R** to see how this field was
